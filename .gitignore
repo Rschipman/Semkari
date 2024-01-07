@@ -131,5 +131,9 @@ dist
 
 
 # Images
-build/Images
+build/img
 .png
+
+# Videos
+build/vids
+.mp4
