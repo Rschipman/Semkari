@@ -441,6 +441,13 @@ video {
   height: auto;
 }
 
+.centered {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 /* Make elements with the HTML hidden attribute stay hidden by default */
 
 [hidden] {
