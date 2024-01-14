@@ -5,58 +5,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Semkari</title>
     <link rel="stylesheet" href="css/style.css" />
+    <!-- Include Tailwind CSS -->
     <link
       href="https://cdn.jsdelivr.net/npm/tailwindcss@2/dist/tailwind.min.css"
       rel="stylesheet"
     />
+    <style>
+      @font-face {
+        font-family: yukari;
+        src: url(./yukari.ttf);
+      }
+      .yukari {
+        font-family: yukari;
+      }
+
+      .carousel-container {
+        width: 100vw;
+        height: 100vh;
+        overflow: hidden;
+      }
+
+      .carousel-wrapper {
+        display: flex;
+        width: 400%; /* Adjust based on the number of videos */
+        transition: transform 0.5s ease-in-out;
+      }
+
+      .carousel-item {
+        min-width: 100vw;
+        box-sizing: border-box;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .carousel-item iframe {
+        width: 100%;
+        height: 100%;
+      }
+    </style>
   </head>
-
-  <style>
-    @font-face {
-      font-family: yukari;
-      src: url(./yukari.ttf);
-    }
-    .yukari {
-      font-family: yukari;
-    }
-  </style>
-
-  <body class="min-h-screen bg-slate-800">
-    <!-- Anxiety out now w/ anxiety4.mp4 -->
-    <!-- video background -->
-    <a href="youtube.com/semkari">
-      <video
-        autoplay
-        muted
-        loop
-        id="anxiety"
-        class="aspect-video fixed right-0 top-0 min-w-full"
-      >
-        <source src="./vids/Anxiety4.mp4" />
-      </video>
-      <!-- Centered text over video -->
+  <body class="min-h-screen bg-violet-800">
+    <section class="relative h-screen overflow-hidden">
       <div
-        class="absolute w-full h-full text-5xl md:text-9xl text-white top-0 left-0 flex justify-center items-center text-opacity-80 hover:text-opacity-60 overflow-auto"
+        class="aspect-w-16 aspect-h-9 absolute top-0 left-0 right-0 bottom-0"
       >
-        <h1 class="yukari">Anxiety</h1>
-        <p class="text-3xl md:text-5xl yukari">Semkari</p>
+        <video
+          autoplay
+          muted
+          loop
+          id="anxiety"
+          class="object-cover w-full h-full"
+        >
+          <source src="./vids/Anxiety4.mp4" type="video/mp4" />
+        </video>
       </div>
-
       <div
-        class="absolute w-full h-full text-5xl md:text-9xl text-white top-24 left-0 flex justify-center items-center text-opacity-80 hover:text-opacity-60 overflow-auto"
+        class="absolute inset-0 flex flex-col justify-center items-center text-white text-opacity-80 hover:text-opacity-60"
       >
+        <h1 class="yukari text-5xl md:text-9xl">Anxiety</h1>
+        <p class="yukari text-3xl md:text-5xl">Semkari</p>
         <p class="font-mono text-3xl md:text-5xl opacity-25">Listen Now</p>
       </div>
-    </a>
-    <!-- Music Video Gallery -->
-    <div class="max-w-full mx-auto"></div>
+    </section>
+
+    <section class="block relative">
+      <div class="carousel-container">
+        <div class="carousel-wrapper">
+            <!-- Video 1 -->
+<div class="carousel-item">
+  <iframe width="100%" height="315" src="https://www.youtube.com/embed/Zb8uhEmGymQ" frameborder="0"
+      allowfullscreen></iframe>
+</div>
+<!-- Video 2 -->
+<div class="carousel-item">
+  <iframe width="100%" height="315" src="https://www.youtube.com/embed/zvQGEQXu_T4" frameborder="0"
+      allowfullscreen></iframe>
+</div>
+<!-- Video 3 -->
+<div class="carousel-item">
+  <iframe width="100%" height="315" src="https://www.youtube.com/embed/ujL4YQd-tVY" frameborder="0"
+      allowfullscreen></iframe>
+</div>
+<!-- Video 4 -->
+<div class="carousel-item">
+  <iframe width="100%" height="315" src="https://www.youtube.com/embed/0n8tcLdygKw" frameborder="0"
+      allowfullscreen></iframe>
+</div>
+            
+    </section>
+
     <!-- Merch linking to Boys Don't Cry Instagram -->
     <!-- Live Schedule -->
     <!-- Gallery with Expanding option -->
     <!-- Spotify Link -->
     <!-- Footer Menu -->
 
-    <!-- script -->
-    <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
+    <!-- Script -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          const carouselWrapper = document.querySelector('.carousel-wrapper');
+          let currentIndex = 0;
+  
+          function updateCarousel() {
+              const slideWidth = document.querySelector('.carousel-item').getBoundingClientRect().width;
+              carouselWrapper.style.transform = `translateX(${-currentIndex * slideWidth}px)`;
+          }
+  
+          function nextSlide() {
+              currentIndex = (currentIndex + 1) % carouselWrapper.children.length;
+              updateCarousel();
+          }
+  
+          function prevSlide() {
+              currentIndex = (currentIndex - 1 + carouselWrapper.children.length) % carouselWrapper.children.length;
+              updateCarousel();
+          }
+  
+          setInterval(nextSlide, 5000); // Change slide every 5 seconds 
+      });
+  </script>
   </body>
 </html>
